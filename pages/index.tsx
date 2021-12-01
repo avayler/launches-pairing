@@ -2,6 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+// Example of using next/Image
+// <Image src='https://images2.imgbox.com/4f/e3/I0lkuJ2e_o.png' alt='ss' width='200px' height='200px'/>
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -15,6 +18,8 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <Image src='https://images2.imgbox.com/4f/e3/I0lkuJ2e_o.png' alt='ss' width='200px' height='200px'/>
 
         <p className={styles.description}>
           Get started by editing{' '}
