@@ -12,23 +12,24 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Task to be completed
+We would like you to clone this repository and amend the home page to display a list of Cards with the launch data retrieved from the spacex data api. You should not spend more than 1 hour to complete your solution. After this time it would be beneficial to create a TODO list of the changes that you would like to have done.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The restful api that we would like you to use is https://api.spacexdata.com/v3/launches
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Your solution should cover the following tasks:
+- Make api request on page load
+- Store response json into component state
+- Display data top 10 items
 
-## Learn More
+The data that we would like you to display are:
+- mission_name
+- launch_date_utc
+- from rocket object
+	- list core_serial from the cores array in first_stage
+	- payload_id and payload_type from payloads array in second_stage
+- display the image from mission_patch_small in links
+- use launch_success and launch_failure_details to show the user the success/failure of launch and reason of failure.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Note
+flight_number as a unique property for each launch object. 
