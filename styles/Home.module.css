@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .main {
@@ -70,11 +69,12 @@
 }
 
 .grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  width: 90%;
   margin-top: 3rem;
 }
 
@@ -87,7 +87,6 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  width: 45%;
 }
 
 .card:hover,
@@ -111,6 +110,24 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.status {
+  width: fit-content;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+}
+.statusError {
+  color: #a10707;
+  border: #a10707 1px solid;
+}
+.statusSuccess {
+  color: #31f300;
+  border: #31f300 1px solid;
+}
+.subText {
+  margin-left: 1rem;
 }
 
 @media (max-width: 600px) {
