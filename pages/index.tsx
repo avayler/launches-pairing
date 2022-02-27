@@ -1,18 +1,9 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-
-// TO DO:
-// Make web application to be responsive.
-// Add Cypress test that all cards are displayed on the page.
-// Create route based on flight number that will render description for each rocket.
-
-// NOTES:
-// v3 api version is depreciated.
-// core_serial, payload_id, payload_type doesn't exist on new api version.
-
 interface IMission {
   id: string;
   name: string;
@@ -64,7 +55,9 @@ export default function Home() {
                 />
                 <h2>Mission name: {mission.name}</h2>
                 <p>Flight number: {mission.flight_number}</p>
-                <p>Launch date: {mission.date_utc}</p>
+                <p>
+                  Launch date: {dayjs(mission.date_utc).format("YYYY-MM-DD")}
+                </p>
                 {mission.success ? (
                   <p>Mission successful!</p>
                 ) : (
