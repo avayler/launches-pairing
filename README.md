@@ -11,7 +11,9 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Task to be completed
-We would like you to clone this repository and amend the home page to display a list of Cards with the launch data retrieved from the spacex data api. You should not spend more than 1 hour to complete your solution. After this time it would be beneficial to create a TODO list of the changes that you would like to have done.
+We would like you to clone this repository and amend the home page to display a list of Cards with the launch data retrieved from the spacex data api. You may take as long as you require to complete the solution to demonstrate your knowledge in creating a web application, however, we ideally would like this returned within 3 days.
+
+Please consider the structure of your code and develop as if you were working in a commercial team environment and test the solution as you see fit.
 
 The restful api that we would like you to use is https://api.spacexdata.com/v3/launches
 
@@ -30,4 +32,4 @@ The data that we would like you to display are:
 - use launch_success and launch_failure_details to show the user the success/failure of launch and reason of failure.
 
 Note
-flight_number as a unique property for each launch object. 
+flight_number as a unique property for each launch object.
