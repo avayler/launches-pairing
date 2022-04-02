@@ -1,3 +1,4 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "parser": "@typescript-eslint/parser",
+  "extends": [ "@avayler/eslint-config"]
 }
