@@ -1,0 +1,1 @@
+export {usePageData} from "./usePageData"

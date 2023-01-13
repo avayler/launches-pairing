@@ -1,11 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import {usePageData} from "../hooks";
 
 // Example of using next/Image
 // <Image src='https://images2.imgbox.com/4f/e3/I0lkuJ2e_o.png' alt='ss' width='200px' height='200px'/>
 
 export default function Home() {
+  const data = usePageData();
   return (
     <div className={styles.container}>
       <Head>
