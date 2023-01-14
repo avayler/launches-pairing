@@ -67,4 +67,19 @@ interface Core{
   landing_success: boolean;
   landing_type: string;
   landpad: string;
+  serial:undefined|string;
+}
+
+interface CoreData{
+  block: number;
+  reuse_count: number;
+  rtls_attempts: number;
+  rtls_landings: number;
+  asds_attempts: number;
+  asds_landings: number;
+  last_update: string;
+  launches: Array<string>;
+  serial: string;
+  status: string;
+  id:string;
 }
