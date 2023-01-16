@@ -6,6 +6,7 @@
 }
 
 .content{
+  color: rgb(209 213 219);
   gap: 5px;
   display:flex;
   flex:1;
@@ -71,4 +72,12 @@
   flex:1;
   min-width: 800px;
   justify-content: center;
+}
+
+.footer{
+  gap:2px;
+  border-top:rgba(209,213,219,0.6) dashed 2px;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
 }

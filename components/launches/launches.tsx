@@ -3,6 +3,8 @@ import style from "./launches.module.css"
 
 export const Launches = () => {
   const launchData = useLaunchData()
+
+  console.log(launchData)
   
   if(!launchData || launchData.length <= 0) return (
     <div>
@@ -30,17 +32,34 @@ export const Launches = () => {
 	    <div className={style.details}>
 	      {launch.details?.trim() || "No details available" }
 	    </div>
-	    <div>
+	    <div className={style.footer}>
 	      <div>
-		Core Serials:
+		<div>
+		  Core Serials:
+		</div>
+		<ul>
+		  {launch.cores.map((core, i)=>(
+		    <li key={i} >
+		      {core.serial || " Serial Unknown "}
+		    </li>
+		  ))}
+		</ul>
 	      </div>
-	      <ul>
-		{launch.cores.map((core, index)=>(
-		  <li key={index} >
-		    {core.serial || " Serial Unknown "}
-		  </li>
-		))}
-	      </ul>
+	      <div>
+		<div>Payloads:</div>
+		<ul>
+		  {launch.payloads.map((payload, i)=>(
+		    <li key={i}>
+		      <div>
+			{payload.name||"Payload Name unknown"}
+		      </div>
+		      <div>
+			{payload.type || "Payload Type unknown"}
+		      </div>
+		    </li>
+		  ))}
+		</ul>
+	      </div>
 	    </div>
 	  </div> 
 	</div>

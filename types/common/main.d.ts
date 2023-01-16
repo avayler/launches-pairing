@@ -12,7 +12,7 @@ interface Launch{
   crew: Array<unknown>;
   ships: Array<string>;
   capsules: Array<unknown>;
-  payloads: Array<String>;
+  payloads: Array<String>|Array<PayloadData>;
   launchpad: string;
   flight_number: number;
   name: string;
@@ -81,5 +81,13 @@ interface CoreData{
   launches: Array<string>;
   serial: string;
   status: string;
+  id:string;
+}
+
+interface PayloadData{
+  name: string;
+  type: string;
+  reused: boolean;
+  launch: string;
   id:string;
 }

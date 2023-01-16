@@ -8,41 +8,50 @@ export const useLaunchData= () => {
     const launchData = await fetch("https://api.spacexdata.com/v4/launches")
     const launchJson = await launchData.json()
 
-    console.log("yeet1")
     //get core json
     const coreData = await fetch("https://api.spacexdata.com/v4/cores");
     const coreJson = await coreData.json();
+
+    //get payload data
+    const payloadData = await fetch("https://api.spacexdata.com/v4/payloads");
+    const payloadJson = await payloadData.json();
     
-    console.log("yeet2")
     //filter quantity
     const filteredLaunches = <Array<Launch>>launchJson
-      .sort((a:Launch,b:Launch)=>(b.date_unix-a.date_unix))
+//       .sort((a:Launch,b:Launch)=>(b.date_unix-a.date_unix))
       .slice(0,10);
 
-    console.log(filteredLaunches)
-
     //rebuild launch list with corrected cores
-    const launchList = (filteredLaunches).map((l) =>{
+    const launchList = filteredLaunches.map((l) =>{
 
       //rebuild core with corrected serial
       const cores = l.cores.map((c)=>{
 
 	//find serial from core
-	const serial = (<Array<CoreData>>coreJson)?.find((x) => (c.core == x.id)).serial;
-
-	console.log(serial)
+	const core = (<Array<CoreData>>coreJson)
+	  .find((x) => (c.core == x.id));
+	const serial = core?.serial
 
 	// rebuild core with serial
 	const completeCore = {...c, serial}
 	
-	//console.log(completeCore)
 	//return rebuilt core
 	return completeCore
       } )
+
+      // rebuild payloads with payload data
+      const payloads = l.payloads.map((p)=>{
+	const payload = (<Array<PayloadData>>payloadJson)
+	  .find((x)=>(p == x.id))
+	return payload
+      })
+
       // return rebuild launch
-      return {...l, cores};
+      return {...l, cores, payloads};
     })
+
     setLaunches(<Array<Launch>>launchList)
+
   }
 
   useEffect(()=>{
