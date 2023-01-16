@@ -60,6 +60,14 @@ export const Launches = () => {
 		  ))}
 		</ul>
 	      </div>
+	      <div>
+		<div>
+		  Status:
+		</div>
+		<div>
+		  {launch.success?"Success":"Failure"}
+		</div>
+	      </div>
 	    </div>
 	  </div> 
 	</div>
