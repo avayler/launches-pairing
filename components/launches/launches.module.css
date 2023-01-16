@@ -1,0 +1,83 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.content{
+  color: rgb(209 213 219);
+  gap: 5px;
+  display:flex;
+  flex:1;
+  flex-direction: column;
+}
+
+.patch{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content:space-around;
+}
+
+.patch img{
+  object-fit: cover;
+  width: 5em;
+  height: 5em;
+  align-self: center;
+  border-radius: 9999px;
+  background-color: rgb(209 213 219);
+  border: rgb(209 213 219) solid 2px;
+}
+
+.details{
+  display: flex;
+  flex:1;
+  text-overflow: ellipsis;
+}
+
+.secondary{
+  font-size: 10px;
+  color: rgb(107 114 128);
+  vertical-align: center;
+  font-weight: bold;
+}
+
+.primary{
+  font-size: 14px;
+  color: rgb(209 213 219);
+  vertical-align: center;
+  font-weight: bold;
+  text-overflow: ellipsis;
+}
+
+.card{
+  padding: 7px;
+  display:flex;
+  flex:1;
+  border-radius: 5px;
+  background-color: rgb(30 41 59);
+  gap: 10px;
+  max-width: 650px;
+  max-height: 800px;
+}
+
+.cards{
+  overflow: none;
+  padding: 10px;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2, 50%);
+  gap: 10px;
+  flex:1;
+  min-width: 800px;
+  justify-content: center;
+}
+
+.footer{
+  gap:2px;
+  border-top:rgba(209,213,219,0.6) dashed 2px;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}

@@ -25,5 +25,14 @@
 , "pages/index.tsx", "pages/_app.tsx"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typeRoots":[
+    "./types"
+  ],
+  "baseUrl":".",
+  "paths": {
+    "lib/*":["lib/*"],
+    "hooks/*":["hooks/*"],
+    "components/*":["components/*"]
+  }
 }
