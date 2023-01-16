@@ -1,4 +1,3 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "extends": [ "@avayler/eslint-config"]
+  "parser": "@typescript-eslint/parser"
 }
