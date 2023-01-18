@@ -31,6 +31,3 @@ The data that we would like you to display are:
 - `id` and `type` from payloads
 - display the image from `links.patch.small` in links
 - use `success` and `failures` to show the user the success/failure of launch and reason of failure.
-
-Note
-`flight_number` as a unique property for each launch object.
