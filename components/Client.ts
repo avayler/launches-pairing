@@ -1,5 +1,5 @@
-const BASE_URL = 'https://api.spacexdata.com/v5/';
+const BASE_URL = 'https://api.spacexdata.com/';
 
-export const getLaunchesData = async (limit: number) => {
-  return await (await fetch(`${BASE_URL}launches?limit=10`)).json();
+export const getLaunchesData = async () => {
+  return await (await fetch(`${BASE_URL}v5/launches`)).json();
 };

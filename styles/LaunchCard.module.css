@@ -1,0 +1,29 @@
+.card {
+  border: 1px solid black;
+  margin: 5px;
+  height: 400px;
+  padding: 5px;
+  width: 30%;
+  min-width: 300px;
+  position: relative;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+}
+
+.imageContainer {
+  height: 30%;
+  width: 30%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}
