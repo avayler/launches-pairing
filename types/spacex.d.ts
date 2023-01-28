@@ -8,9 +8,11 @@ declare interface Launch {
   id: string;
   name: string;
   date: string;
-  image_url: string;
-  core: string;
+  image_url: string | undefined;
+  core: string | undefined;
   payloads: Payload[];
+  success: boolean;
+  failureReason?: string;
 }
 
 // SPACEX API - LAUNCHES
@@ -36,6 +38,12 @@ declare interface SpaceXLinks {
   wikipedia: string;
 }
 
+declare interface SpaceXFailure {
+  altitude: number;
+  reason: string;
+  time: number;
+}
+
 declare interface SpaceXLaunch {
   fairings: {
     reused: boolean;
@@ -51,12 +59,12 @@ declare interface SpaceXLaunch {
   window: number;
   rocket: string;
   success: boolean;
-  failures: unknown[];
+  failures: SpaceXFailure[];
   details: stirng;
   crew: unknown[];
   ships: string[];
   capsules: unknown[];
-  payloads: string[];
+  payloads: Payload[];
   launchpad: string;
   auto_update: true;
   flight_number: number;
@@ -66,7 +74,7 @@ declare interface SpaceXLaunch {
   date_local: string;
   date_precision: string;
   upcoming: boolean;
-  cores: SpaceXCoreBasic[];
+  cores: { core: Partial<SpaceXCore> }[];
   id: string;
 }
 
@@ -84,7 +92,7 @@ declare interface SpaceXCoreBasic {
 }
 
 declare interface SpaceXCore {
-  block: null;
+  block: unknown | null;
   reuse_count: number;
   rtls_attempts: number;
   rtls_landings: number;
@@ -100,13 +108,13 @@ declare interface SpaceXCore {
 // SPACEX API - PAYLOADS
 declare interface SpaceXPayload {
   dragon: {
-    capsule: null;
-    mass_returned_kg: null;
-    mass_returned_lbs: null;
-    flight_time_sec: null;
-    manifest: null;
-    water_landing: null;
-    land_landing: null;
+    capsule: unknown | null;
+    mass_returned_kg: unknown | null;
+    mass_returned_lbs: unknown | null;
+    flight_time_sec: unknown | null;
+    manifest: unknown | null;
+    water_landing: unknown | null;
+    land_landing: unknown | null;
   };
   name: string;
   type: string;
@@ -121,19 +129,19 @@ declare interface SpaceXPayload {
   orbit: string;
   reference_system: string;
   regime: string;
-  longitude: null;
-  semi_major_axis_km: null;
-  eccentricity: null;
+  longitude: unknown | null;
+  semi_major_axis_km: unknown | null;
+  eccentricity: unknown | null;
   periapsis_km: number;
   apoapsis_km: number;
   inclination_deg: number;
-  period_min: null;
-  lifespan_years: null;
-  epoch: null;
-  mean_motion: null;
-  raan: null;
-  arg_of_pericenter: null;
-  mean_anomaly: null;
+  period_min: unknown | null;
+  lifespan_years: unknown | null;
+  epoch: unknown | null;
+  mean_motion: unknown | null;
+  raan: unknown | null;
+  arg_of_pericenter: unknown | null;
+  mean_anomaly: unknown | null;
   id: string;
 }
 
