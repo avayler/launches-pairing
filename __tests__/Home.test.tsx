@@ -17,6 +17,6 @@ describe('Home page component', () => {
     const cards = container.querySelectorAll('.card');
 
     expect(container).toMatchSnapshot();
-    expect(cards).toHaveLength(10);
+    expect(cards).toHaveLength(launchData.length);
   });
 });
