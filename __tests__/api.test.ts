@@ -39,16 +39,23 @@ describe('/api/launches API endpoint', () => {
       expect(launch.date).toBeTruthy();
       expect(launch.image_url).toBeTruthy();
       expect(launch.success).toBeDefined();
-      expect(Array.isArray(launch.payloads)).toBe(true);
+      expect(launch.payloads).toBeDefined();
 
       if (!launch.success) expect(launch.failureReason).toBeTruthy();
       else expect(launch.failureReason).toBeFalsy();
 
       // Verify the launch property values have the correct types and structure
       expect(new Date(launch.date)).toBeInstanceOf(Date);
-      expect(imagePattern.test(launch.image_url)).toBe(true);
+      expect(launch.image_url).toMatch(imagePattern);
+      expect(typeof launch.id).toBe('string');
+      expect(typeof launch.name).toBe('string');
+      expect(typeof launch.core).toBe('string');
+      expect(typeof launch.date).toBe('string');
+      expect(typeof launch.image_url).toBe('string');
+      expect(typeof launch.success).toBe('boolean');
+      expect(Array.isArray(launch.payloads)).toBe(true);
 
-      // Verify the payload properties have values
+      // Verify the payload properties have values and the correct types
       if (launch.payloads.length > 0) {
         for (let i = 0; i < launch.payloads.length; i++) {
           const payload = launch.payloads[i];
@@ -56,6 +63,8 @@ describe('/api/launches API endpoint', () => {
           expect(payload).toBeDefined();
           expect(payload.id).toBeTruthy();
           expect(payload.type).toBeTruthy();
+          expect(typeof payload.id).toBe('string');
+          expect(typeof payload.type).toBe('string');
         }
       }
     }
