@@ -10,8 +10,7 @@ const mockRequestResponse = <T extends unknown>(method: RequestMethod = 'GET') =
   createMocks<NextApiRequest, NextApiResponse<T>>({ method });
 
 describe('/api/launches API endpoint', () => {
-  it('Verify that the top endpoint returns an array of the top 10 SpaceX launches', async () => {
-    const imagePattern = /^https:\/\/images[0-9]{1,}[.]imgbox[.]com[\/_0-9a-zA-Z]{1,}[.](?:jpg|png)$/;
+  it('Verify that the top endpoint calls SpaceX api', async () => {
     // Make the mock return the custom axios response
     const { req, res } = mockRequestResponse<Launch[]>();
     await launchesHandler(req, res);
@@ -22,8 +21,17 @@ describe('/api/launches API endpoint', () => {
     // Verify the response status code and message
     expect(res.statusCode).toBe(200);
     expect(res.statusMessage).toEqual('OK');
-    // Verify the response data is an array with 10 items
     expect(data).toBeDefined();
+  });
+
+  it('Verify that the top endpoint returns an array of the top 10 SpaceX launches', async () => {
+    const imagePattern = /^https:\/\/images[0-9]{1,}[.]imgbox[.]com[\/_0-9a-zA-Z]{1,}[.](?:jpg|png)$/;
+    // Make the mock return the custom axios response
+    const { req, res } = mockRequestResponse<Launch[]>();
+    await launchesHandler(req, res);
+    const data = res._getJSONData() as Launch[];
+
+    // Verify the response data is an array with 10 items
     expect(Array.isArray(data)).toBe(true);
     expect(data).toHaveLength(10);
 
