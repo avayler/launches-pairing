@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { mount } from '../utilities/show';
 import mapToJSX from '../utilities/mapToJSX';
 import classNames from '../utilities/classNames';
