@@ -4,16 +4,27 @@
 
 require('dotenv').config();
 import '@testing-library/jest-dom';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { render } from '@testing-library/react';
 import launchData from '../data/launches-test.json';
 import LaunchCard from '../components/Launch';
 import { act } from 'react-dom/test-utils';
+import SimpleGrid, { Context } from '../components/SimpleGrid';
+
+const Wrapper = ({ children }: { children: ReactNode }) => <SimpleGrid>{children}</SimpleGrid>;
+const withContext = <P extends Launch>(props: P) => (
+  <Context.Consumer>
+    {({ activeId, setActiveId }) => (
+      <LaunchCard {...props} showStatus={activeId === props.id} onButtonClick={setActiveId} />
+    )}
+  </Context.Consumer>
+);
 
 describe('Launch component', () => {
   it('Verify that Card component renders and initial state is correct', async () => {
     const launch = launchData[0] as Launch;
-    const { container } = render(<LaunchCard {...launch} />);
+    const { container } = render(withContext(launch), { wrapper: Wrapper });
+
     const card = container.querySelector('.card');
     const header = container.querySelector('.header');
     const image = container.querySelector('img');
@@ -41,7 +52,7 @@ describe('Launch component', () => {
 
   it('Verify that Card component renders with correct text', async () => {
     const launch = launchData[0] as Launch;
-    const { getByText } = render(<LaunchCard {...launch} />);
+    const { getByText } = render(withContext(launch), { wrapper: Wrapper });
 
     expect(getByText(launch.name)).not.toBeNull();
     expect(getByText(new Date(launch.date).toLocaleString())).not.toBeNull();
@@ -55,18 +66,18 @@ describe('Launch component', () => {
     }
   });
 
-  it('Verify that Card component can change state', async () => {
+  it('Verify that Card component can change state', () => {
     const launch = launchData[0] as Launch;
-    const { container, getByText } = render(<LaunchCard {...launch} />);
+    const { container, getByText } = render(withContext(launch), { wrapper: Wrapper });
+
     const card = container.querySelector('.card');
     const header = container.querySelector('.header');
     const button = container.querySelector('button');
     const statusClassName = launch.success ? 'status_success' : 'status_failure';
     const statusText = launch.success ? 'Was successful' : 'Was a failure';
-    const statusDetails = launch.details || launch.failureReason || 'There is currently no status message available';
+    const statusDetails = launch.details || launch.failureReason || 'There is currently no details available';
 
-    button.click();
-    await act(() => Promise.resolve());
+    act(() => button.click());
 
     expect(card).toHaveClass(statusClassName);
     expect(header).toHaveClass(statusClassName);

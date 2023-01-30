@@ -9,7 +9,7 @@ import FailureIcon from './icons/Failure';
 import PayloadIcon from './icons/Payload';
 import css from '../styles/launch.module.css';
 
-interface LaunchProps extends Launch {
+export interface LaunchProps extends Launch {
   showStatus: boolean;
   onButtonClick: (id: string) => void;
 }
