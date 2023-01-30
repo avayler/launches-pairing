@@ -6,11 +6,12 @@ const query = (utcString: string) => ({
   query: {
     date_utc: { $lte: utcString },
     success: { $ne: null },
+    details: { $ne: null },
   },
   options: {
     limit: 10,
     sort: [['date_utc', 'desc']],
-    select: ['name', 'date_utc', 'links.patch.small', 'failures', 'success'],
+    select: ['name', 'date_utc', 'details', 'links.patch.small', 'failures', 'success'],
     populate: [
       {
         path: 'cores.core',
@@ -36,6 +37,7 @@ export default async function handler(request, response) {
     const data = launches.map<Launch>(({ links, cores, payloads, failures, ...rest }) => ({
       id: rest.id,
       name: rest.name,
+      details: rest.details,
       payloads,
       success: rest.success,
       date: rest.date_utc,

@@ -8,6 +8,7 @@ declare interface Launch {
   id: string;
   name: string;
   date: string;
+  details: string;
   image_url: string | undefined;
   core: string | undefined;
   payloads: Payload[];
