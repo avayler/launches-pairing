@@ -1,0 +1,145 @@
+/* Card */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--dark);
+  background-color: var(--light);
+  border: 0.5rem solid var(--dark);
+  border-radius: 1rem;
+}
+
+.card,
+.button,
+.header {
+  transition: background-color 0.25s ease-in-out;
+}
+
+/* Card Header */
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.card:not(.card_back) .header {
+  background-color: var(--gray-light);
+}
+
+.header > div {
+  line-height: 1;
+}
+.header strong {
+  display: block;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+}
+
+/* Card Body */
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem;
+  max-height: 375px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.body > div {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+/* Card Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5rem solid var(--dark);
+  margin-bottom: -0.5rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.footer > div:nth-child(1) {
+  border-top-right-radius: 33.33%;
+  border-left-color: var(--black);
+  border-bottom-color: var(--black);
+  width: 128px;
+  height: 128px;
+  padding: 12px;
+
+  background-color: var(--black);
+  margin-left: -0.5rem;
+  padding: 0.5rem;
+}
+
+.footer > div:nth-child(2) {
+  align-self: flex-end;
+  margin-right: -0.5rem;
+  border-radius: 33.33% 0 1rem 0;
+}
+
+/* Card Image */
+.image {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Card Button */
+.button {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  padding: 0.25rem;
+  border: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: var(--gray-light);
+  color: var(--dark);
+  border-radius: 25% 0 0.5rem 0;
+}
+
+.status_success {
+  background-color: var(--success) !important;
+}
+
+.status_failure {
+  background-color: var(--failure) !important;
+}
+
+/* Payload */
+.payload {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: var(--gray-light);
+  border-radius: 0.5rem;
+}
+
+.payload > div {
+  flex: 1;
+  line-height: 1;
+}
+
+.payload strong {
+  display: block;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+}
