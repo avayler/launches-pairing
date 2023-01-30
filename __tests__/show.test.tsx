@@ -1,5 +1,5 @@
 import launchData from '../data/launches-test.json';
-import Card from '../components/Card';
+import Card from '../components/Launch';
 import show, { mount } from '../utilities/show';
 
 describe('show utility function', () => {
