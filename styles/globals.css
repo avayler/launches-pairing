@@ -6,7 +6,7 @@
   --gray-dark: #828282;
   --black: #222222;
   --white: #f5f5f5;
-  --failure: #eb5757;
+  --danger: #eb5757;
   --success: #219653;
 }
 
@@ -26,4 +26,8 @@ body {
 
   background-color: var(--black);
   color: var(--white);
+}
+
+body {
+  padding: 1rem;
 }
