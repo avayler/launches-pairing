@@ -63,7 +63,7 @@
 
 .footer > div {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   border: 0.5rem solid var(--dark);
   margin-bottom: -0.5rem;
@@ -86,8 +86,10 @@
 
 .footer > div:nth-child(2) {
   align-self: flex-end;
+  flex: 1;
   margin-right: -0.5rem;
-  border-radius: 33.33% 0 1rem 0;
+  margin-left: -0.5rem;
+  border-radius: 0 0 1rem 0; /* 33.33% 0 1rem 0; */
 }
 
 /* Card Image */
@@ -100,7 +102,7 @@
 /* Card Button */
 .button {
   appearance: none;
-  display: grid;
+  display: flex;
   place-content: center;
   place-items: center;
   padding: 0.25rem;
@@ -110,7 +112,7 @@
   cursor: pointer;
   background-color: var(--gray-light);
   color: var(--dark);
-  border-radius: 25% 0 0.5rem 0;
+  border-radius: 0 0 0.5rem 0; /* 25% 0 0.5rem 0; */
 }
 
 .status_success {
