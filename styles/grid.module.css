@@ -2,7 +2,7 @@
   --columns: 1fr;
   display: grid;
   grid-template-columns: var(--columns);
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 /* MEDIA QUERIES */

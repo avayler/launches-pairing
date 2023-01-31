@@ -41,7 +41,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1rem;
+  padding: 0 1rem;
+  margin: 1rem 0;
   max-height: 375px;
   overflow-y: auto;
 }
@@ -50,6 +51,18 @@
   display: flex;
   justify-content: space-between;
   text-transform: uppercase;
+}
+
+.body strong {
+  text-transform: uppercase;
+}
+
+.body p {
+  margin-bottom: 1rem;
+}
+
+.body p:last-child {
+  margin-bottom: 0;
 }
 
 /* Card Image */
@@ -87,12 +100,11 @@
   border-top: 0.25rem solid var(--black);
 }
 
-.status_success {
-  background-color: var(--success) !important;
-}
-
-.status_failure {
-  background-color: var(--danger) !important;
+.button span {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1;
 }
 
 /* Payload */
@@ -115,4 +127,21 @@
   display: block;
   text-transform: uppercase;
   text-overflow: ellipsis;
+}
+
+/* STATUS */
+.bg_success {
+  background-color: var(--success) !important;
+}
+
+.bg_failure {
+  background-color: var(--danger) !important;
+}
+
+.text_success {
+  color: var(--success) !important;
+}
+
+.text_failure {
+  color: var(--danger) !important;
 }

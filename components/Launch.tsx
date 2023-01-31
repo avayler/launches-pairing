@@ -41,9 +41,7 @@ function Body({ core, payloads, success }: Launch) {
       <div className={css.body}>
         <div>
           <strong>Status</strong>
-          <span style={{ color: success ? 'var(--success)' : 'var(--danger)' }}>
-            {success ? 'Successful' : 'Failure'}
-          </span>
+          <span className={success ? css.text_success : css.text_failure}>{success ? 'Successful' : 'Failure'}</span>
         </div>
 
         <div>
@@ -67,11 +65,11 @@ function Body({ core, payloads, success }: Launch) {
 function StatusBody({ details, failureReason }: Launch) {
   const hasFailureReason = failureReason !== undefined;
   return (
-    <div className={css.body} style={{ margin: '1rem 0' }}>
-      {mount(hasFailureReason, <strong style={{ textTransform: 'uppercase' }}>Reason</strong>)}
-      {mount(hasFailureReason, <p style={{ fontSize: '1.25em', marginBottom: 16 }}>{failureReason}</p>)}
-      <strong style={{ textTransform: 'uppercase' }}>Details</strong>
-      <p style={{ fontSize: '1.25em' }}>{details || 'There is currently no details available'}</p>
+    <div className={css.body}>
+      {mount(hasFailureReason, <strong>Reason</strong>)}
+      {mount(hasFailureReason, <p>{failureReason}</p>)}
+      <strong>Details</strong>
+      <p>{details || 'There is currently no details available'}</p>
     </div>
   );
 }
@@ -91,7 +89,7 @@ function PayloadSlot(props: Payload) {
 
 function Launch(props: LaunchProps) {
   const { id, name, image_url, success, showStatus, onButtonClick } = props;
-  const statusClassName = success ? css.status_success : css.status_failure;
+  const statusClassName = success ? css.bg_success : css.bg_failure;
   const className = classNames(css.card, showStatus ? statusClassName : null);
   const headerClassName = classNames(css.header, showStatus ? statusClassName : null);
   const buttonClassName = classNames(css.button, !showStatus ? statusClassName : null);
@@ -120,8 +118,7 @@ function Launch(props: LaunchProps) {
       <button className={buttonClassName} onClick={onClick}>
         {mount(showStatus, <CloseIcon />)}
         {mount(!showStatus, <ButtonIcon />)}
-
-        <span style={{ fontSize: '150%', fontWeight: 500, lineHeight: 1 }}>{showStatus ? 'CLOSE' : 'DETAILS'}</span>
+        <span>{showStatus ? 'Close' : 'Details'}</span>
       </button>
     </div>
   );
