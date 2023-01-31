@@ -4,26 +4,25 @@
 
 require('dotenv').config();
 import '@testing-library/jest-dom';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { render } from '@testing-library/react';
 import launchData from '../data/launches-test.json';
 import LaunchCard from '../components/Launch';
 import { act } from 'react-dom/test-utils';
-import SimpleGrid, { Context } from '../components/SimpleGrid';
+import SimpleGrid from '../components/SimpleGrid';
 
-const Wrapper = ({ children }: { children: ReactNode }) => <SimpleGrid>{children}</SimpleGrid>;
 const withContext = <P extends Launch>(props: P) => (
-  <Context.Consumer>
+  <SimpleGrid>
     {({ activeId, setActiveId }) => (
       <LaunchCard {...props} showStatus={activeId === props.id} onButtonClick={setActiveId} />
     )}
-  </Context.Consumer>
+  </SimpleGrid>
 );
 
 describe('Launch component', () => {
   it('Verify that Card component renders and initial state is correct', async () => {
     const launch = launchData[0] as Launch;
-    const { container } = render(withContext(launch), { wrapper: Wrapper });
+    const { container } = render(withContext(launch));
 
     const card = container.querySelector('.card');
     const header = container.querySelector('.header');
@@ -52,7 +51,7 @@ describe('Launch component', () => {
 
   it('Verify that Card component renders with correct text', async () => {
     const launch = launchData[0] as Launch;
-    const { getByText } = render(withContext(launch), { wrapper: Wrapper });
+    const { getByText } = render(withContext(launch));
 
     expect(getByText(launch.name)).not.toBeNull();
     expect(getByText(new Date(launch.date).toLocaleString())).not.toBeNull();
@@ -68,7 +67,7 @@ describe('Launch component', () => {
 
   it('Verify that Card component can change state', () => {
     const launch = launchData[0] as Launch;
-    const { container, getByText } = render(withContext(launch), { wrapper: Wrapper });
+    const { container, getByText } = render(withContext(launch));
 
     const card = container.querySelector('.card');
     const header = container.querySelector('.header');

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import mapToJSX from '../utilities/mapToJSX';
 import LaunchCard from '../components/Launch';
-import SimpleGrid, { Context } from '../components/SimpleGrid';
+import SimpleGrid from '../components/SimpleGrid';
 
 interface HomeProps {
   preloadData: Launch[];
@@ -48,13 +48,11 @@ export default function Home(props: HomeProps) {
       </Head>
 
       <SimpleGrid>
-        <Context.Consumer>
-          {({ activeId, setActiveId }) =>
-            mapToJSX(launches, (props) => (
-              <LaunchCard {...props} showStatus={activeId === props.id} onButtonClick={setActiveId} />
-            ))
-          }
-        </Context.Consumer>
+        {({ activeId, setActiveId }) =>
+          mapToJSX(launches, (props) => (
+            <LaunchCard {...props} showStatus={activeId === props.id} onButtonClick={setActiveId} />
+          ))
+        }
       </SimpleGrid>
     </>
   );
