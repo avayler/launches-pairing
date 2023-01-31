@@ -30,13 +30,13 @@ describe('Launch component', () => {
     const button = container.querySelector('button');
 
     expect(card).not.toBeNull();
-    expect(card).not.toHaveClass('status_success');
-    expect(card).not.toHaveClass('status_failure');
+    expect(card).not.toHaveClass('bg_success');
+    expect(card).not.toHaveClass('bg_failure');
 
     expect(header).not.toBeNull();
     expect(header).toHaveClass('header');
-    expect(header).not.toHaveClass('status_success');
-    expect(header).not.toHaveClass('status_failure');
+    expect(header).not.toHaveClass('bg_success');
+    expect(header).not.toHaveClass('bg_failure');
 
     expect(image).not.toBeNull();
     expect(image.getAttribute('src')).toMatch(launch.image_url);
@@ -45,8 +45,8 @@ describe('Launch component', () => {
     expect(button).not.toBeNull();
     expect(button).toHaveClass('button');
 
-    if (launch.success) expect(button).toHaveClass('status_success');
-    else expect(button).toHaveClass('status_failure');
+    if (launch.success) expect(button).toHaveClass('bg_success');
+    else expect(button).toHaveClass('bg_failure');
   });
 
   it('Verify that Card component renders with correct text', async () => {
@@ -72,7 +72,7 @@ describe('Launch component', () => {
     const card = container.querySelector('.card');
     const header = container.querySelector('.header');
     const button = container.querySelector('button');
-    const statusClassName = launch.success ? 'status_success' : 'status_failure';
+    const statusClassName = launch.success ? 'bg_success' : 'bg_failure';
     const statusText = launch.success ? 'Was successful' : 'Was a failure';
     const statusDetails = launch.details || launch.failureReason || 'There is currently no details available';
 
