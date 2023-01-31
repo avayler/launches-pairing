@@ -1,0 +1,16 @@
+.root {
+  display: block;
+  background-color: var(--gray-light);
+  color: var(--dark);
+  padding: 1rem;
+}
+
+.success {
+  background-color: var(--success);
+  color: var(--dark);
+}
+
+.danger {
+  background-color: var(--danger);
+  color: var(--dark);
+}
