@@ -3,18 +3,23 @@
   display: grid;
   grid-template-columns: var(--columns);
   gap: 0.5rem;
-  padding: 0.5rem;
 }
 
 /* MEDIA QUERIES */
-@media (min-width: 576px) {
+@media (min-width: 525px) {
   .root {
     --columns: 1fr 1fr;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .root {
     --columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .root {
+    --columns: 1fr 1fr 1fr 1fr;
   }
 }

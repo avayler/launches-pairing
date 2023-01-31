@@ -37,33 +37,37 @@ function StatusHeading({ name, success }: Launch) {
 
 function Body({ core, payloads, success }: Launch) {
   return (
-    <div className={css.body}>
-      <div>
-        <strong>Status</strong>
-        <span style={{ color: success ? 'var(--success)' : 'var(--failure)' }}>
-          {success ? 'Successful' : 'Failure'}
-        </span>
+    <>
+      <div className={css.body}>
+        <div>
+          <strong>Status</strong>
+          <span style={{ color: success ? 'var(--success)' : 'var(--danger)' }}>
+            {success ? 'Successful' : 'Failure'}
+          </span>
+        </div>
+
+        <div>
+          <strong>Core</strong>
+          <span>{core}</span>
+        </div>
       </div>
 
-      <div>
-        <strong>Core</strong>
-        <span>{core}</span>
-      </div>
+      <div style={{ display: 'grid', borderTop: '0.25rem solid var(--black)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem' }}>
+          <strong style={{ textTransform: 'uppercase' }}>Payloads</strong>
+          <span>{payloads.length}</span>
+        </div>
 
-      <div>
-        <strong>Payloads</strong>
-        <span>{payloads.length}</span>
+        {mapToJSX(payloads, PayloadSlot)}
       </div>
-
-      {mapToJSX(payloads, PayloadSlot)}
-    </div>
+    </>
   );
 }
 
 function StatusBody({ details, failureReason }: Launch) {
   const hasFailureReason = failureReason !== undefined;
   return (
-    <div className={css.body}>
+    <div className={css.body} style={{ margin: '1rem 0' }}>
       {mount(hasFailureReason, <strong style={{ textTransform: 'uppercase' }}>Reason</strong>)}
       {mount(hasFailureReason, <p style={{ fontSize: '1.25em', marginBottom: 16 }}>{failureReason}</p>)}
       <strong style={{ textTransform: 'uppercase' }}>Details</strong>
@@ -103,21 +107,22 @@ function Launch(props: LaunchProps) {
         {mount(showStatus, <StatusHeading {...props} />)}
       </header>
 
+      {mount(
+        !showStatus,
+        <div className={css.image_wrapper}>
+          <img src={image_url} alt={name} />
+        </div>
+      )}
+
       {mount(!showStatus, <Body {...props} />)}
       {mount(showStatus, <StatusBody {...props} />)}
 
-      <footer className={css.footer}>
-        <div>
-          <img src={image_url} alt={name} className={css.image} />
-        </div>
+      <button className={buttonClassName} onClick={onClick}>
+        {mount(showStatus, <CloseIcon />)}
+        {mount(!showStatus, <ButtonIcon />)}
 
-        <div>
-          <button className={buttonClassName} onClick={onClick}>
-            {mount(showStatus, <CloseIcon />)}
-            {mount(!showStatus, <ButtonIcon />)}
-          </button>
-        </div>
-      </footer>
+        <span style={{ fontSize: '150%', fontWeight: 500, lineHeight: 1 }}>{showStatus ? 'CLOSE' : 'DETAILS'}</span>
+      </button>
     </div>
   );
 }

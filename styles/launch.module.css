@@ -5,8 +5,6 @@
   flex-direction: column;
   color: var(--dark);
   background-color: var(--light);
-  border: 0.5rem solid var(--dark);
-  border-radius: 1rem;
 }
 
 .card,
@@ -22,7 +20,6 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border-radius: 1rem 1rem 0 0;
 }
 
 .card:not(.card_back) .header {
@@ -32,6 +29,7 @@
 .header > div {
   line-height: 1;
 }
+
 .header strong {
   display: block;
   text-transform: uppercase;
@@ -46,7 +44,6 @@
   padding: 1rem;
   max-height: 375px;
   overflow-y: auto;
-  margin-bottom: 1rem;
 }
 
 .body > div {
@@ -55,46 +52,21 @@
   text-transform: uppercase;
 }
 
-/* Card Footer */
-.footer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.footer > div {
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  border: 0.5rem solid var(--dark);
-  margin-bottom: -0.5rem;
-  width: 5rem;
-  height: 5rem;
-}
-
-.footer > div:nth-child(1) {
-  border-top-right-radius: 33.33%;
-  border-left-color: var(--black);
-  border-bottom-color: var(--black);
-  width: 128px;
-  height: 128px;
-  padding: 12px;
-
-  background-color: var(--black);
-  margin-left: -0.5rem;
-  padding: 0.5rem;
-}
-
-.footer > div:nth-child(2) {
-  align-self: flex-end;
-  flex: 1;
-  margin-right: -0.5rem;
-  margin-left: -0.5rem;
-  border-radius: 0 0 1rem 0; /* 33.33% 0 1rem 0; */
-}
-
 /* Card Image */
-.image {
-  width: auto;
+.image_wrapper {
+  display: grid;
+  width: 8rem;
+  height: 8rem;
+  background-color: var(--black);
+  padding: 1rem;
+  border-radius: 50%;
+  margin: 1rem auto 0.5rem;
+  align-content: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.image_wrapper > img {
   max-width: 100%;
   max-height: 100%;
 }
@@ -105,14 +77,14 @@
   display: flex;
   place-content: center;
   place-items: center;
-  padding: 0.25rem;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   width: 100%;
-  height: 100%;
   cursor: pointer;
   background-color: var(--gray-light);
   color: var(--dark);
-  border-radius: 0 0 0.5rem 0; /* 25% 0 0.5rem 0; */
+  border-top: 0.25rem solid var(--black);
 }
 
 .status_success {
@@ -120,7 +92,7 @@
 }
 
 .status_failure {
-  background-color: var(--failure) !important;
+  background-color: var(--danger) !important;
 }
 
 /* Payload */
@@ -132,7 +104,6 @@
   padding: 0.5rem;
   margin-top: 0.5rem;
   background-color: var(--gray-light);
-  border-radius: 0.5rem;
 }
 
 .payload > div {
