@@ -14,7 +14,7 @@ const rocketVariants = {
     rotate: 10,
     x: 100,
     y: -500,
-    transition: { duration: 1.5 },
+    transition: { duration: 0.5 },
   },
 };
 const Loading: React.FunctionComponent = () => {
