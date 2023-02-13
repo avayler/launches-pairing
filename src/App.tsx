@@ -55,16 +55,11 @@ interface LaunchDataFromAPI {
 }
 
 function App(): JSX.Element {
-
-
   const { resData, status, error } =
     useFetch<LaunchDataFromAPI>(spaceXApiConfig);
   if (status === "loading") {
     return (
-      <div
-        id="top-container"
-        className=" bg-slate-100 dark:bg-slate-800"
-      >
+      <div id="top-container" className=" bg-slate-100 dark:bg-slate-800">
         <Loading />
       </div>
     );
@@ -89,8 +84,6 @@ function App(): JSX.Element {
       >
         <StaticHeader />
         <div id="central-container" className="container mx-auto px-4">
-       
-
           {error instanceof Error && <span>Error: {error.message}</span>}
           {launchData && (
             <motion.div

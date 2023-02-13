@@ -4,6 +4,7 @@ interface Theming {
   colorTheme: "dark" | "light",
   setTheme:React.Dispatch<string>
 }
+
 export default function useDarkMode(): Theming {
   const [theme, setTheme] = useState(localStorage.theme);
   const colorTheme = theme === "dark" ? "light" : "dark";
