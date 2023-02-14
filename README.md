@@ -1,18 +1,16 @@
 # launches-pairing
-avayler-test
+## Avayler-test
 
-replaced Nextjs with React 18
+Replaced:  
+  * Nextjs with React 18  
+  * Webpack with Vite  
+  * Jest with Vitest  
+  * Babel with SWC  
 
-Webpack with Vite
-
-Jest with Vitest
-
-Babel with SWC
-
-used TS, tanstack query with axios for "headless frontend" ;) ,
-
-TailwindCSS, Framer Motion for looks
-
+Used TS, Tanstack Query with Axios for "headless frontend" ;)  
+TailwindCSS, Framer Motion for looks.  
+  
+  
 thank you
 
 Michal Kurzewski
