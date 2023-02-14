@@ -30,7 +30,7 @@ const Loading: React.FunctionComponent = () => {
           >
             <Rocket className="dark:fill-slate-100 " />
           </motion.div>
-          <div className="font-head absolute top-96 left-20 rotate-90 md:rotate-0 uppercase text-6xl dark:text-slate-100">
+          <div id="loading" className="font-head absolute top-96 left-20 rotate-90 md:rotate-0 uppercase text-6xl dark:text-slate-100">
             Loading...
           </div>
         </div>

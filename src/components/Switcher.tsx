@@ -25,7 +25,8 @@ export default function Switcher() {
   };
   return (
     <>
-      <motion.div
+      <motion.button
+        id="theme-toggle"
         variants={themeVariants}
         initial="animate"
         animate="animate"
@@ -34,16 +35,24 @@ export default function Switcher() {
           setTheme(colorTheme);
         }}
       >
-        <motion.div className="w-10 h10 m-1" variants={rocketVariants} initial="init" animate="animate">
+        <motion.div
+          className="w-10 h10 m-1"
+          variants={rocketVariants}
+          initial="init"
+          animate="animate"
+        >
           <Rocket className="rotate-45  dark:fill-slate-200  " />
         </motion.div>
         {colorTheme === "light" && (
-          <Moon className=" fill-slate-200 w-8 h-8 m-2 stroke-0" />
+          <Moon
+            id="moon-icon"
+            className=" fill-slate-200 w-8 h-8 m-2 stroke-0"
+          />
         )}
         {colorTheme === "dark" && (
-          <Sun className=" fill-slate-800 w-8 h-8 m-2" />
+          <Sun id="sun-icon" className=" fill-slate-800 w-8 h-8 m-2" />
         )}
-      </motion.div>
+      </motion.button>
     </>
   );
 }
