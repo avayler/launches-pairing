@@ -1,4 +1,4 @@
- const spaceXApiConfig = {
+const spaceXApiConfig = {
   config: {
     method: "post",
     url: "https://api.spacexdata.com/v5/launches/query",
@@ -13,6 +13,5 @@
   key: ["fetch", "launches"],
   staleTime: 1000 * 60 * 10,
 };
-
 
 export default spaceXApiConfig;
