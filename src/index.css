@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  @apply bg-slate-50 dark:bg-slate-600 rounded-xl rounded-tl-[76px] shadow-md relative
+}
+
+.btn {
+  @apply rounded-full py-2 px-3 uppercase text-xs font-bold cursor-pointer tracking-wider
+}
