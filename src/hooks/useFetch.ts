@@ -1,28 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-interface Response<T> {
-  resData: T | null;
+interface IResponse<T> {
+  data: T | undefined;
   status: "error" | "success" | "loading";
   error: Error | null;
 }
-interface Data {
+interface IData {
   config: {};
   key: (string | number)[];
   staleTime: number;
 }
-const useFetch = <T>({ config, key, staleTime }:Data): Response<T> => {
-  const queryFunction = async (): Promise<Response<T>> => {
+const useFetch = <T extends Response>({ config, key, staleTime = 0 }: IData): IResponse<T> => {
+  const queryFunction = async (): Promise<IResponse<T>> => {
     return await axios(config).then((res) => res.data);
   };
 
-  const { data, status, error } = useQuery({
+  const { data, status, error }: IResponse<T> = useQuery({
     queryKey: key,
     queryFn: queryFunction,
     staleTime: staleTime,
   });
 
-  return { resData: data as T, status, error: error as Error };
+  return { data, status, error};
 };
 
 export default useFetch;

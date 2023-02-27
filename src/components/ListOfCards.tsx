@@ -27,9 +27,8 @@ const cardVariants = {
   },
 };
 const ListOfCards: React.FunctionComponent<LaunchDataMapList> = (
-  props: LaunchDataMapList
+  { launchData }: LaunchDataMapList
 ) => {
-  const { launchData } = props;
   return (
     <motion.div
       className="mt-8 grid lg:grid-cols-2 sm:grid-cols-1 2xl:grid-cols-3 gap-5 sm:gap-8 lg:gap-14"

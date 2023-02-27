@@ -15,7 +15,7 @@ export interface LaunchDataMap {
 }
 
 export interface LaunchDataMapList {
-  launchData:LaunchDataMap[] | undefined;
+  launchData: LaunchDataMap[] | undefined;
 }
 
 interface LaunchItemFromAPI {
@@ -27,14 +27,13 @@ interface LaunchItemFromAPI {
   failures: [{ reason: string }];
 }
 
-interface LaunchDataFromAPI {
+interface SpaceXResponse extends Response {
   docs: LaunchItemFromAPI[];
 }
 
-function App(): JSX.Element {
 
-  const { resData, status, error } =
-    useFetch<LaunchDataFromAPI>(spaceXApiConfig);
+function App(): JSX.Element {
+  const { data, status, error } = useFetch<SpaceXResponse>(spaceXApiConfig);
 
   if (status === "loading") {
     return (
@@ -56,7 +55,7 @@ function App(): JSX.Element {
 
   let launchData;
   if (status === "success") {
-   launchData = resData?.docs.map((item: LaunchItemFromAPI) => ({
+    launchData = data?.docs.map((item: LaunchItemFromAPI) => ({
       name: item.name,
       date_utc: item.date_utc,
       core: item.cores[0].core,
@@ -70,7 +69,8 @@ function App(): JSX.Element {
     <>
       <div
         id="top-container"
-        className=" bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-100">
+        className=" bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-100"
+      >
         <StaticHeader />
         <div id="central-container" className="container mx-auto px-4">
           {error instanceof Error && <span>Error: {error.message}</span>}
