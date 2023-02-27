@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest";
-import { render } from "./utils/test-utils";
+import { render } from "@testing-library/react";
 import Loading from "../components/Loading";
 
 describe("<Loading />", () => {

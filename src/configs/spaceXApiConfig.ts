@@ -5,7 +5,7 @@ const spaceXApiConfig = {
     data: {
       query: {},
       options: {
-        limit: 10,
+        limit: 100,
         select: ["name", "date_utc", "cores", "payloads", "links", "failures"],
       },
     },
