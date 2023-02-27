@@ -19,23 +19,19 @@ const rocketVariants = {
 };
 const Loading: React.FunctionComponent = () => {
   return (
-    <>
-      <StaticHeader />
-      <div className="h-screen">
-        <div className="absolute top-80 left-1/2 transform -translate-x-1/2 ">
-          <motion.div
-            variants={rocketVariants}
-            initial="init"
-            animate="animate"
-          >
-            <Rocket className="dark:fill-slate-100 " />
-          </motion.div>
-          <div id="loading" className="font-head absolute top-96 left-20 rotate-90 md:rotate-0 uppercase text-6xl dark:text-slate-100">
-            Loading...
-          </div>
+    <div className="h-screen">
+      <div className="absolute top-80 left-1/2 transform -translate-x-1/2 ">
+        <motion.div variants={rocketVariants} initial="init" animate="animate">
+          <Rocket className="dark:fill-slate-100 " />
+        </motion.div>
+        <div
+          id="loading"
+          className="font-head absolute top-96 left-20 rotate-90 md:rotate-0 uppercase text-6xl dark:text-slate-100"
+        >
+          Loading...
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
