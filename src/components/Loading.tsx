@@ -1,8 +1,7 @@
 import { ReactComponent as Rocket } from "../assets/svg/soloRocket.svg";
-import { motion } from "framer-motion";
-import StaticHeader from "./StaticHeader";
+import { motion, Variants } from "framer-motion";
 
-const rocketVariants = {
+const rocketVariants:Variants = {
   init: {
     scale: 0.2,
     rotate: -45,
@@ -14,7 +13,7 @@ const rocketVariants = {
     rotate: 10,
     x: 100,
     y: -500,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, repeat: Infinity, repeatType: "mirror" },
   },
 };
 const Loading: React.FunctionComponent = () => {
