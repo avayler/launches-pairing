@@ -76,19 +76,26 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         </div>
       </div>
       {failureReasons.length > 0 && (
-        <div className="absolute bottom-0 flex bg-red-100 dark:bg-red-900  p-4 w-full rounded-b-lg max-h-20">
-          <div className="absolute bottom-0 left-0 font-black font-head uppercase text-2xl p-2 h-13 ">
-            Failure
-          </div>
-          {failureReasons.map((reason, index) => (
-            <div className=" ml-28 font-body text-xs text-end" key={index}>
-              {reason}
-            </div>
-          ))}
+        <div className="absolute bottom-0 w-[96%]">
+          <Tooltip
+            children={
+              <div className=" font-black font-head  uppercase text-2xl w-fit bg-red-200 dark:bg-red-900 p-3 rounded-tr-xl rounded-bl-xl">
+                Failure
+              </div>
+            }
+            text={
+              <div>
+                {failureReasons.map((reason, index) => (
+                  <div key={index}>{reason}</div>
+                ))}
+              </div>
+            }
+            background="bg-red-100/80 dark:bg-red-900/80 ml-[2%]"
+          />
         </div>
       )}
       {failureReasons.length === 0 && (
-        <div className="font-black font-head uppercase text-2xl absolute bottom-0 bg-slate-100 dark:bg-slate-700  p-3 rounded-tr-xl rounded-bl-xl">
+        <div className="font-black font-head uppercase text-2xl absolute bottom-0 bg-slate-100 dark:bg-slate-700 p-3 rounded-tr-xl rounded-bl-xl">
           Success
         </div>
       )}

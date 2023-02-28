@@ -4,9 +4,14 @@ import { motion } from "framer-motion";
 interface TooltipProps {
   text: any;
   children: React.ReactElement;
+  background?:string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
+const Tooltip: React.FC<TooltipProps> = ({
+  text,
+  children,
+  background = "bg-slate-300/80 dark:bg-slate-900/90",
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const hoveredVariants = {
     animate: {
@@ -22,7 +27,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
     <>
       <div className="relative">
         <motion.div
-          className="absolute bottom-full bg-slate-300/80 dark:bg-slate-800 p-4 rounded-lg w-full backdrop-blur-sm font-normal"
+          className={`absolute bottom-full ${background} p-4 rounded-lg w-full backdrop-blur-sm font-normal`}
           variants={hoveredVariants}
           initial="init"
           animate="animate"
