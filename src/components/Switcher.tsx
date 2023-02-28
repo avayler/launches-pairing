@@ -13,11 +13,11 @@ export default function Switcher() {
   };
   const rocketVariants = {
     init: {
-      x: "-80vw",
+      x: "-70vw",
       opacity: 0,
     },
     animate: {
-      x: colorTheme === "light" ? "0vw" : "-80vw",
+      x: colorTheme === "light" ? "0vw" : "-70vw",
       opacity: colorTheme === "dark" ? 0 : 1,
       transition: { duration: 2, delay: 2 },
       // display:"block",

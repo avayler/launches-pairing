@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 interface Theming {
-  colorTheme: "dark" | "light",
-  setTheme:React.Dispatch<string>
+  colorTheme: "dark" | "light";
+  setTheme: React.Dispatch<string>;
 }
 
 export default function useDarkMode(): Theming {
@@ -16,5 +16,5 @@ export default function useDarkMode(): Theming {
     localStorage.setItem("theme", theme);
   }, [theme, colorTheme]);
 
-  return {colorTheme, setTheme};
+  return { colorTheme, setTheme };
 }

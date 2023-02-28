@@ -89,7 +89,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
                 ))}
               </div>
             }
-            addStyle="bg-red-100/80 dark:bg-red-900/80 w-[96%] ml-[2%]"
+            addStyle="bg-red-100/80 dark:bg-red-900/80 w-[94%] ml-[3%]"
           />
         </div>
       )}
