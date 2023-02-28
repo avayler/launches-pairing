@@ -37,12 +37,12 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         </div>
       </div>
       <motion.div
-        className="rounded-full object-cover w-48 h-48 absolute -top-4 -left-4 bg-slate-100 dark:bg-slate-800  shadow-lg border-dashed dark:border-dashed border-4 border-slate-500"
+        className="rounded-full object-cover w-[180px] h-[180px] absolute -top-4 -left-4 bg-slate-100 dark:bg-slate-800  shadow-lg border-dashed dark:border-dashed border-4 border-slate-500"
         variants={imageVariants}
         initial="hidden"
         animate="visible"
       >
-        <img className="h-48 p-6" src={image} alt={name} />
+        <img className="h-44 p-6" src={image} alt={name} />
       </motion.div>
       <div className="font-body text-end">
         <div
@@ -51,7 +51,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         >
           <Tooltip
             text={coreTooltipContent()}
-            children={<div className="pl-[150px]">Core Id: {core} </div>}
+            children={<div className="pl-[130px]">Core Id: {core} </div>}
           />
         </div>
         <div className="m-2">Date UTC: {date_utc}</div>
