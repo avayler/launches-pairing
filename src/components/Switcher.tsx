@@ -4,7 +4,6 @@ import { ReactComponent as Rocket } from "../assets/svg/rocket2.svg";
 import useDarkMode from "../hooks/useDarkMode";
 import { motion } from "framer-motion";
 
-
 export default function Switcher() {
   const { colorTheme, setTheme } = useDarkMode();
   const themeVariants = {
@@ -14,11 +13,11 @@ export default function Switcher() {
   };
   const rocketVariants = {
     init: {
-      x: "-100vw",
-      opacity:0
+      x: "-80vw",
+      opacity: 0,
     },
     animate: {
-      x: colorTheme === "light" ? "0vw" : "-100vw",
+      x: colorTheme === "light" ? "0vw" : "-80vw",
       opacity: colorTheme === "dark" ? 0 : 1,
       transition: { duration: 2, delay: 2 },
     },
