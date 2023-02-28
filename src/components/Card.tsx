@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ILaunchDataMap, ISpaceXResponse } from "../App";
 import { motion } from "framer-motion";
-import useFetch from "../hooks/useFetch";
-import {
-  spaceXApiConfigCores,
-  spaceXApiConfigPayloads,
-} from "../configs/spaceXApiConfig";
 import Tooltip from "./Tooltip";
-import { AxiosResponse } from "axios";
+import { GetCoreTooltipContent } from "./tooltipHelpers/GetCoreTooltipContent";
+import { GetPayloadTooltipContent } from "./tooltipHelpers/GetPayloadTooltipContent";
 
 const imageVariants = {
   hidden: {
@@ -29,19 +25,19 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
     core,
     name
   );
-  
-  const { mouseEnterPayloadHandler, payloadTooltipContent } =
-    GetPayloadTooltipContent(payloads[0], name);
 
   return (
-    <motion.div className="card hover:shadow-lg dark:shadow-none hover:dark:shadow-none h-80 overflow-visible">
-      <div className="bg-slate-200 dark:bg-slate-700 w-full rounded-tl-[77px]">
+    <motion.div
+      id="card"
+      className="card hover:shadow-lg dark:shadow-none hover:dark:shadow-none min-h-[300px] overflow-visible"
+    >
+      <div className="bg-slate-200 dark:bg-slate-700 w-full rounded-tl-[77px] rounded-tr-xl">
         <div className="font-bold font-head p-4 ml-36 text-end tracking-wider">
           Name: <span className="uppercase text-4xl ">{name}</span>
         </div>
       </div>
       <motion.div
-        className="rounded-full object-cover  w-48 absolute -top-4 -left-4 bg-slate-100 dark:bg-slate-800  shadow-lg border-dashed dark:border-dashed border-4 border-slate-500"
+        className="rounded-full object-cover w-48 h-48 absolute -top-4 -left-4 bg-slate-100 dark:bg-slate-800  shadow-lg border-dashed dark:border-dashed border-4 border-slate-500"
         variants={imageVariants}
         initial="hidden"
         animate="visible"
@@ -55,28 +51,32 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         >
           <Tooltip
             text={coreTooltipContent()}
-            children={<div>Core Id: {core} </div>}
+            children={<div className="pl-[150px]">Core Id: {core} </div>}
           />
         </div>
         <div className="m-2">Date UTC: {date_utc}</div>
-        <div className="m-2">
+        <div className="m-2 pb-20">
           Payloads:
-          {payloads.map((item, index) => (
-            <div
-              className="text-end"
-              key={index}
-              onMouseEnter={mouseEnterPayloadHandler}
-            >
-              <Tooltip
-                text={payloadTooltipContent()}
-                children={<div>Id: {item} </div>}
-              />
-            </div>
-          ))}
+          {payloads.map((payload, index) => {
+            const { mouseEnterPayloadHandler, payloadTooltipContent } =
+              GetPayloadTooltipContent(payload, name);
+            return (
+              <div
+                className="text-end"
+                key={index}
+                onMouseEnter={mouseEnterPayloadHandler}
+              >
+                <Tooltip
+                  text={payloadTooltipContent()}
+                  children={<div>Id: {payload} </div>}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
       {failureReasons.length > 0 && (
-        <div className="absolute bottom-0 flex bg-red-100 dark:bg-red-900  p-4 w-full">
+        <div className="absolute bottom-0 flex bg-red-100 dark:bg-red-900  p-4 w-full rounded-b-lg max-h-20">
           <div className="absolute bottom-0 left-0 font-black font-head uppercase text-2xl p-2 h-13 ">
             Failure
           </div>
@@ -88,7 +88,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         </div>
       )}
       {failureReasons.length === 0 && (
-        <div className="font-black font-head uppercase text-2xl absolute bottom-0 bg-slate-100 dark:bg-slate-700  p-3 rounded-tr-xl">
+        <div className="font-black font-head uppercase text-2xl absolute bottom-0 bg-slate-100 dark:bg-slate-700  p-3 rounded-tr-xl rounded-bl-xl">
           Success
         </div>
       )}
@@ -96,78 +96,3 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
   );
 };
 export default Card;
-interface ISpaceXCoreResponse extends AxiosResponse {
-  serial: string;
-  last_update: string;
-}
-function GetCoreTooltipContent(core: string, name: string) {
-  const { data, status, error, refetch, isStale } =
-    useFetch<ISpaceXCoreResponse>(spaceXApiConfigCores(core));
-
-  const coreTooltipContent = () => {
-    if (status === "error") {
-      return <div>Error: {error?.message}</div>;
-    }
-    if (status === "loading") {
-      return <div>"Loading..."</div>;
-    }
-    if (status === "success") {
-      return (
-        <>
-          <h1 className="uppercase text-xl font-head ">{name} Core data</h1>
-          <ul className="list-disc p-4 text-left">
-            <li>Core Id: {core}</li>
-            <li>Serial: {data?.serial}</li>
-            <li>Status: {data?.status}</li>
-            {data?.last_update && (
-              <li className="text-sm">Last Update: {data?.last_update}</li>
-            )}
-          </ul>
-        </>
-      );
-    }
-  };
-
-  const mouseEnterCoreHandler = () => {
-    if (isStale) {
-      refetch();
-    }
-  };
-  return { mouseEnterCoreHandler, coreTooltipContent };
-}
-interface ISpaceXPayloadResponse extends AxiosResponse {
-  name: string;
-  type: string;
-}
-function GetPayloadTooltipContent(payload: string, name: string) {
-  const { data, status, error, refetch, isStale } =
-    useFetch<ISpaceXPayloadResponse>(spaceXApiConfigPayloads(payload));
-
-  const payloadTooltipContent = () => {
-    if (status === "error") {
-      return <div>Error: {error?.message}</div>;
-    }
-    if (status === "loading") {
-      return <div>"Loading..."</div>;
-    }
-    if (status === "success") {
-      return (
-        <>
-          <h1 className="uppercase text-xl font-head ">{name} Payload data</h1>
-          <ul className="list-disc p-4 text-left">
-            <li>Payload Id: {payload}</li>
-            <li>Name: {data?.name}</li>
-            <li>Type: {data?.type}</li>
-          </ul>
-        </>
-      );
-    }
-  };
-
-  const mouseEnterPayloadHandler = () => {
-    if (isStale) {
-      refetch();
-    }
-  };
-  return { mouseEnterPayloadHandler, payloadTooltipContent };
-}

@@ -6,7 +6,7 @@ interface IResponse<T> {
   status: "error" | "success" | "loading";
   error: AxiosError | null;
   refetch: any;
-  isStale:boolean;
+  isStale: boolean;
 }
 interface IData {
   config: AxiosRequestConfig;

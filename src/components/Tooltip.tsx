@@ -22,7 +22,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
     <>
       <div className="relative">
         <motion.div
-          className="absolute bottom-full bg-slate-300/80 dark:bg-slate-800 p-4 rounded-lg w-full backdrop-blur-sm"
+          className="absolute bottom-full bg-slate-300/80 dark:bg-slate-800 p-4 rounded-lg w-full backdrop-blur-sm font-normal"
           variants={hoveredVariants}
           initial="init"
           animate="animate"
