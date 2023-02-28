@@ -20,6 +20,10 @@ export default function Switcher() {
       x: colorTheme === "light" ? "0vw" : "-80vw",
       opacity: colorTheme === "dark" ? 0 : 1,
       transition: { duration: 2, delay: 2 },
+      // display:"block",
+      // transitionEnd: {
+      //   display:"none"
+      // },
     },
   };
   return (

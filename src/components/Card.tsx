@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { ILaunchDataMap, ISpaceXResponse } from "../App";
+import { ILaunchDataMap} from "../App";
 import { motion } from "framer-motion";
 import Tooltip from "./Tooltip";
 import { GetCoreTooltipContent } from "./tooltipHelpers/GetCoreTooltipContent";
@@ -29,7 +28,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
   return (
     <motion.div
       id="card"
-      className="card hover:shadow-lg dark:shadow-none hover:dark:shadow-none min-h-[300px] overflow-visible"
+      className="card hover:shadow-lg dark:shadow-none hover:dark:shadow-none  overflow-visible"
     >
       <div className="bg-slate-200 dark:bg-slate-700 w-full rounded-tl-[77px] rounded-tr-xl">
         <div className="font-bold font-head p-4 ml-36 text-end tracking-wider">
@@ -50,12 +49,12 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
           onMouseEnter={mouseEnterCoreHandler}
         >
           <Tooltip
-            text={coreTooltipContent()}
+            tooltipContent={coreTooltipContent()}
             children={<div className="pl-[130px]">Core Id: {core} </div>}
           />
         </div>
         <div className="m-2">Date UTC: {date_utc}</div>
-        <div className="m-2 pb-20">
+        <div className="m-2">
           Payloads:
           {payloads.map((payload, index) => {
             const { mouseEnterPayloadHandler, payloadTooltipContent } =
@@ -67,7 +66,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
                 onMouseEnter={mouseEnterPayloadHandler}
               >
                 <Tooltip
-                  text={payloadTooltipContent()}
+                  tooltipContent={payloadTooltipContent()}
                   children={<div>Id: {payload} </div>}
                 />
               </div>
@@ -76,26 +75,26 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         </div>
       </div>
       {failureReasons.length > 0 && (
-        <div className="absolute bottom-0 w-[96%]">
+        <div>
           <Tooltip
             children={
-              <div className=" font-black font-head  uppercase text-2xl w-fit bg-red-200 dark:bg-red-900 p-3 rounded-tr-xl rounded-bl-xl">
+              <div className="font-black font-head uppercase text-2xl w-fit bg-red-200 dark:bg-red-900 p-3 rounded-tr-xl rounded-bl-xl">
                 Failure
               </div>
             }
-            text={
+            tooltipContent={
               <div>
                 {failureReasons.map((reason, index) => (
                   <div key={index}>{reason}</div>
                 ))}
               </div>
             }
-            background="bg-red-100/80 dark:bg-red-900/80 ml-[2%]"
+            addStyle="bg-red-100/80 dark:bg-red-900/80 w-[96%] ml-[2%]"
           />
         </div>
       )}
       {failureReasons.length === 0 && (
-        <div className="font-black font-head uppercase text-2xl absolute bottom-0 bg-slate-100 dark:bg-slate-700 p-3 rounded-tr-xl rounded-bl-xl">
+        <div className="font-black font-head uppercase text-2xl w-fit bg-slate-100 dark:bg-slate-700 p-3 rounded-tr-xl rounded-bl-xl">
           Success
         </div>
       )}

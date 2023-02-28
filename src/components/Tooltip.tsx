@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 interface TooltipProps {
-  text: any;
+  tooltipContent: any;
   children: React.ReactElement;
-  background?:string;
+  addStyle?: string;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
-  text,
+  tooltipContent,
   children,
-  background = "bg-slate-300/80 dark:bg-slate-900/90",
+  addStyle = "bg-slate-300/80 dark:bg-slate-900/90",
+
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const hoveredVariants = {
@@ -24,24 +25,22 @@ const Tooltip: React.FC<TooltipProps> = ({
     },
   };
   return (
-    <>
-      <div className="relative">
-        <motion.div
-          className={`absolute bottom-full ${background} p-4 rounded-lg w-full backdrop-blur-sm font-normal`}
-          variants={hoveredVariants}
-          initial="init"
-          animate="animate"
-        >
-          {text}
-        </motion.div>
-        <motion.div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {children}
-        </motion.div>
+    <div className="relative">
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {children}
       </div>
-    </>
+      <motion.div
+        className={`absolute bottom-full ${addStyle} p-4 rounded-lg w-full backdrop-blur-sm font-normal`}
+        variants={hoveredVariants}
+        initial="init"
+        animate="animate"
+      >
+        {tooltipContent}
+      </motion.div>
+    </div>
   );
 };
 
