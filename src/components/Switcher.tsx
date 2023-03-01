@@ -3,12 +3,22 @@ import { ReactComponent as Moon } from "../assets/svg/moon.svg";
 import { ReactComponent as Rocket } from "../assets/svg/rocket2.svg";
 import useDarkMode from "../hooks/useDarkMode";
 import { motion } from "framer-motion";
-
+import { useEffect, useState } from "react";
 export default function Switcher() {
-  const { colorTheme, setTheme } = useDarkMode();
+  const { themeMode, toggle } = useDarkMode();
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+ 
+
+  useEffect(() => {
+     setIsDarkMode(themeMode === "dark" ? true : false);
+    const root = window.document.documentElement;
+    root.classList.remove(themeMode === "dark" ? "light" : "dark");
+    root.classList.add(themeMode);
+  }, [themeMode]);
+
   const themeVariants = {
     animate: {
-      rotateY: colorTheme === "dark" ? 0 : 180,
+      rotateY: !isDarkMode ? 0 : 180,
     },
   };
   const rocketVariants = {
@@ -17,13 +27,9 @@ export default function Switcher() {
       opacity: 0,
     },
     animate: {
-      x: colorTheme === "light" ? "0vw" : "-70vw",
-      opacity: colorTheme === "dark" ? 0 : 1,
+      x: isDarkMode ? "0vw" : "-70vw",
+      opacity: !isDarkMode ? 0 : 1,
       transition: { duration: 2, delay: 2 },
-      // display:"block",
-      // transitionEnd: {
-      //   display:"none"
-      // },
     },
   };
   return (
@@ -35,7 +41,7 @@ export default function Switcher() {
         animate="animate"
         className="m-6 flex justify-start w-36 cursor-pointer"
         onClick={() => {
-          setTheme(colorTheme);
+          toggle();
         }}
       >
         <motion.div
@@ -46,14 +52,14 @@ export default function Switcher() {
         >
           <Rocket className="rotate-45  dark:fill-slate-200  " />
         </motion.div>
-        {colorTheme === "light" && (
+        {isDarkMode && (
           <Moon
             id="moon-icon"
             className=" fill-slate-200 w-8 h-8 m-2 stroke-0"
           />
         )}
-        {colorTheme === "dark" && (
-          <Sun id="sun-icon" className=" fill-slate-800 w-8 h-8 m-2" />
+        {!isDarkMode && (
+          <Sun id="sun-icon" className=" fill-slate-800 w-8 h-8 m-2 z-10" />
         )}
       </motion.button>
     </>

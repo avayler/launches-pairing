@@ -16,7 +16,7 @@ const rocketVariants:Variants = {
     transition: { duration: 0.5, repeat: Infinity, repeatType: "mirror" },
   },
 };
-const Loading: React.FunctionComponent = () => {
+const Loading: React.FC = () => {
   return (
     <div className="h-screen">
       <div className="absolute top-80 left-1/2 transform -translate-x-1/2 ">

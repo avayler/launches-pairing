@@ -1,3 +1,4 @@
+import { useState, createContext } from "react";
 import useFetch from "./hooks/useFetch";
 import StaticHeader from "./components/StaticHeader";
 import Loading from "./components/Loading";
@@ -52,18 +53,18 @@ function App(): JSX.Element {
     }));
     return <ListOfCards launchData={launchData} />;
   };
-  return (
-    <div
-      id="top-container"
-      className="text-slate-700 dark:text-slate-100"
-    >
-      <ParticlesBackground />
-      <StaticHeader />
 
-      <div id="central-container" className="container mx-auto px-4">
-        <DisplayContent />
+  return (
+
+      <div id="top-container" className="text-slate-700 dark:text-slate-100">
+        <ParticlesBackground />
+        <StaticHeader />
+
+        <div id="central-container" className="container mx-auto px-4">
+          <DisplayContent />
+        </div>
       </div>
-    </div>
+
   );
 }
 

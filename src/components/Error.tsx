@@ -1,11 +1,10 @@
 import StaticHeader from "./StaticHeader";
 
-interface ErrorData {
+interface IErrorProps {
   error: Error;
 }
 
-const Error: React.FunctionComponent<ErrorData> = (props: ErrorData) => {
-  const { error } = props;
+const Error: React.FC<IErrorProps> = ({ error }: IErrorProps) => {
   return (
     <div
       id="Error"

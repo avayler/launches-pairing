@@ -26,7 +26,7 @@ const cardVariants = {
     },
   },
 };
-const ListOfCards: React.FunctionComponent<ILaunchDataMapList> = ({
+const ListOfCards: React.FC<ILaunchDataMapList> = ({
   launchData,
 }: ILaunchDataMapList) => {
   return (

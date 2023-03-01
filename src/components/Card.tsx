@@ -1,4 +1,4 @@
-import { ILaunchDataMap} from "../App";
+import { ILaunchDataMap } from "../App";
 import { motion } from "framer-motion";
 import Tooltip from "./Tooltip";
 import { GetCoreTooltipContent } from "./tooltipHelpers/GetCoreTooltipContent";
@@ -15,11 +15,14 @@ const imageVariants = {
   },
 };
 
-const Card: React.FunctionComponent<ILaunchDataMap> = (
-  props: ILaunchDataMap
-) => {
-  const { name, date_utc, core, payloads, image, failureReasons } = props;
-
+const Card: React.FC<ILaunchDataMap> = ({
+  name,
+  date_utc,
+  core,
+  payloads,
+  image,
+  failureReasons,
+}: ILaunchDataMap) => {
   const { mouseEnterCoreHandler, coreTooltipContent } = GetCoreTooltipContent(
     core,
     name
@@ -78,7 +81,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
         <div>
           <Tooltip
             children={
-              <div className="font-black font-head uppercase text-2xl w-fit bg-red-200 dark:bg-red-900 p-3 rounded-tr-xl rounded-bl-xl">
+              <div className="font-black font-head uppercase text-2xl w-fit bg-red-200 dark:bg-red-900 p-3 rounded-tr-xl rounded-bl-xl ">
                 Failure
               </div>
             }
@@ -89,7 +92,7 @@ const Card: React.FunctionComponent<ILaunchDataMap> = (
                 ))}
               </div>
             }
-            addStyle="bg-red-100/80 dark:bg-red-900/80 w-[94%] ml-[3%]"
+            addStyle="bg-red-100/80 dark:bg-red-900/80"
           />
         </div>
       )}

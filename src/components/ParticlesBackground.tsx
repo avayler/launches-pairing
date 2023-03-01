@@ -1,33 +1,48 @@
-import { useCallback, useEffect } from "react";
-import type { Container, Engine } from "tsparticles-engine";
-import Particles from "react-particles";
+import { useCallback } from "react";
 import { loadFull } from "tsparticles";
+import Particles from "react-tsparticles";
+import React, { useEffect, useState } from "react";
+import type { Container, Engine } from "tsparticles-engine";
+import useDarkMode from "../hooks/useDarkMode";
+import { ParticlesConfig } from "./ParticlesConfig";
 
 const ParticlesBackground = () => {
+  const { themeMode: theme } = useDarkMode();
+
+  const [particlesContainer, setParticlesContainer] = useState<
+    Container | undefined
+  >();
+
   const particlesInit = useCallback(async (engine: Engine) => {
     console.log(engine);
+
+    // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
   }, []);
+
   const particlesLoaded = useCallback(
     async (container: Container | undefined) => {
-      await console.log(container);
+      await setParticlesContainer(container);
     },
     []
   );
+  useEffect(() => {
+    if (particlesContainer) {
+      const swapTheme = async () => await particlesContainer.loadTheme(theme);
+      swapTheme();
+    }
+  }, [theme]);
 
-  //   const root = window.document.documentElement;
-  //   const isDark = root.classList.contains("dark");
-  //   console.log(isDark);
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
       loaded={particlesLoaded}
       options={{
         background: {
           color: {
-            value: localStorage.theme === "dark" ? "#1e293b" : "#f1f5f9",
-            // value: "#1e293b",
+            value: "#1e293b",
           },
         },
         fpsLimit: 120,
@@ -51,7 +66,7 @@ const ParticlesBackground = () => {
               },
             },
             push: {
-              quantity: 4,
+              quantity: 1,
             },
             repulse: {
               distance: 160,
@@ -61,17 +76,17 @@ const ParticlesBackground = () => {
         },
         particles: {
           color: {
-            value: localStorage.theme === "dark" ? "#f1f5f9" : "#1e293b",
+            value: "#f1f5f9",
           },
           links: {
-            color: localStorage.theme === "dark" ? "#f1f5f9" : "#1e293b",
+            color: "#f1f5f9",
             distance: 150,
             enable: true,
             opacity: 0.1,
             width: 0.5,
           },
           collisions: {
-            enable: true,
+            enable: false,
           },
           move: {
             direction: "right",
@@ -107,6 +122,42 @@ const ParticlesBackground = () => {
             value: { min: 0, max: 5 },
           },
         },
+        themes: [
+          {
+            name: "light",
+            default: {
+              value: true,
+              mode: "light",
+            },
+            options: {
+              background: {
+                color: "#f1f5f9",
+              },
+              particles: {
+                color: {
+                  value: "#1e293b",
+                },
+              },
+            },
+          },
+          {
+            name: "dark",
+            default: {
+              value: true,
+              mode: "dark",
+            },
+            options: {
+              background: {
+                color: "#1e293b",
+              },
+              particles: {
+                color: {
+                  value: "#f1f5f9",
+                },
+              },
+            },
+          },
+        ],
         detectRetina: true,
       }}
     />

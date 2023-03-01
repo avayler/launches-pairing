@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-interface TooltipProps {
+interface ITooltipProps {
   tooltipContent: any;
   children: React.ReactElement;
   addStyle?: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
+const Tooltip: React.FC<ITooltipProps> = ({
   tooltipContent,
   children,
   addStyle = "bg-slate-300/80 dark:bg-slate-900/90",
-
-}) => {
+}: ITooltipProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const hoveredVariants = {
     animate: {
