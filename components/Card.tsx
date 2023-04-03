@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { formatDate } from '../utils/datetimeFormatter';
 import { SpaceXLaunch } from '../types/interface'
 
@@ -12,6 +13,7 @@ const Card = ({
     launch
 }: CardProps) => {
     const { id, links, name, date_utc, cores, payloads, success, failures } = launch
+    const formattedDate = useMemo(() => formatDate(date_utc, 'GMT'), [date_utc]);
 
     return (
         <div className={styles.card}>
@@ -20,7 +22,7 @@ const Card = ({
             </div>
             <div className={styles.card_content}>
                 <h2>{name}</h2>
-                <p>Date: {formatDate(date_utc, 'GMT')}</p>
+                <p>Date: {formattedDate}</p>
                 <p>First Core Serial: {cores[0].core.serial}</p>
                 {
                     payloads.map((payload, index) => {
@@ -36,9 +38,9 @@ const Card = ({
                         <p>Failed</p>
                         <br />
                         <p>Reason for Failure: </p>
-                        {failures?.map((failure, index) => {
-                            return <FormattedText key={id + index} text={`${ index + 1}. ${failure.reason}`} />
-                        })}
+                        {failures?.map((failure, index) => (
+                             <FormattedText key={id + index} text={`${ index + 1}. ${failure.reason}`} />
+                        ))}
 
                     </>
                 )}
