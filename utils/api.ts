@@ -13,15 +13,11 @@ export const post = <T>(url: string, fields: string[]): Promise<PostResponse<T>>
                 select: fields,
                 populate: [
                     {
-                        "path": "payloads",
-                        "select": {
-                            "type": 1
-                        }
+                        path: "payloads",
+                        select: ["type"]
                     }, {
-                        "path": "cores.core",
-                        "select": {
-                            "serial": 1
-                        }
+                        path: "cores.core",
+                        select: ["serial"]
                     }
                 ]
             },
