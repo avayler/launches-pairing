@@ -1,4 +1,4 @@
-export const formatDate = (dateString: string, timeZone: string = 'en-GB'): string => {
+export const formatDate = (dateString: string, timeZone: string = 'GMT'): string => {
     const date = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
@@ -7,9 +7,8 @@ export const formatDate = (dateString: string, timeZone: string = 'en-GB'): stri
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
-        hour12: true,
-        timeZone: 'Europe/London'
+        hour12: false,
+        timeZone: timeZone
     };
-    return new Intl.DateTimeFormat(timeZone, options).format(date);
-}
-
+    return new Intl.DateTimeFormat(undefined, options).format(date);
+};

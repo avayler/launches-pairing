@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-
-type PostResponse<T> = AxiosResponse<{ docs: T }>;
+export type PostResponse<T> = AxiosResponse<{ docs: T }>;
 
 export const post = <T>(url: string, fields: string[]): Promise<PostResponse<T>> => {
     return axios({

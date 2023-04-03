@@ -22,7 +22,7 @@ const Card = ({
             </div>
             <div className={styles.card_content}>
                 <h2>{name}</h2>
-                <p>Date: {formatDate(date_utc, 'en-GB')}</p>
+                <p>Date: {formatDate(date_utc, 'GMT')}</p>
                 <p>First Core Serial: {cores[0].core.serial}</p>
                 {
                     payloads.map((payload, index) => {

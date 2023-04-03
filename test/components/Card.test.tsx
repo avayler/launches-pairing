@@ -38,7 +38,7 @@ describe('Card component', () => {
     it('renders the launch name and date', () => {
         const { getByText } = render(<Card launch={ launch } />);
         expect(getByText(launch.name)).toBeInTheDocument();
-        expect(getByText('Date: 1 Jan 2022, 0:00:00 am')).toBeInTheDocument();
+        expect(getByText('Date: Jan 1, 2022, 24:00:00')).toBeInTheDocument();
     });
 
     it('renders the first core serial and payload types', () => {
