@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { formatDate } from '../utils/datetimeFormatter';
 import { SpaceXLaunch } from '../types/interface'
 
@@ -49,4 +47,4 @@ const Card = ({
     );
 }
 
-export default React.memo(Card);
+export default Card;
