@@ -25,7 +25,7 @@
     "**/*.tsx",
     "pages/index.tsx",
     "pages/_app.tsx"
-  ],
+, "test/pages/index"  ],
   "exclude": [
     "node_modules"
   ]
