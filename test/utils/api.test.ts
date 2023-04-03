@@ -1,13 +1,10 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { post } from '../../utils/api';
+import { url, fields, responseData } from './__mocks__/api.mock'
 
 describe('post', () => {
-    const url = 'http://example.com';
-    const fields = ['field1', 'field2'];
-
     it('should return a successful response with data', async () => {
-        const responseData = { docs: [{ id: 1, name: 'Test' }] };
         const mock = new MockAdapter(axios);
         mock.onPost(url).reply(200, responseData);
 
